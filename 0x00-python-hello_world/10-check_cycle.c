@@ -12,10 +12,7 @@ int check_cycle(listint_t *list)
 	listint_t *ptr_adv1;
 	listint_t *ptr_adv2;
 
-	if (list == NULL)
-		return (0);
-
-	if (list->next == NULL)
+	if (list == NULL || list->next == NULL)
 		return (0);
 
 	ptr_adv1 = list->next;
