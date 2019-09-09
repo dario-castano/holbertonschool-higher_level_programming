@@ -9,7 +9,8 @@
  */
 int check_cycle(listint_t *list)
 {
-	listint_t *ptr;
+	listint_t *ptr_adv1;
+	listint_t *ptr_adv2;
 
 	if (list == NULL)
 		return (0);
@@ -17,13 +18,15 @@ int check_cycle(listint_t *list)
 	if (list->next == NULL)
 		return (0);
 
-	ptr = list->next;
+	ptr_adv1 = list->next;
+	ptr_adv2 = list->next->next;
 
-	while (ptr != list)
+	while (ptr_adv1 != ptr_adv2)
 	{
-		if (ptr->next == NULL)
+		if (ptr_adv1->next == NULL || ptr_adv2->next->next == NULL)
 			return (0);
-		ptr = ptr->next;
+		ptr_adv1 = ptr_adv1->next;
+		ptr_adv2 = ptr_adv2->next->next;
 	}
 
 	return (1);
