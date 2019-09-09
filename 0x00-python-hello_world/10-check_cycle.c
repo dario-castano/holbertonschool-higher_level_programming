@@ -9,13 +9,10 @@
  */
 int check_cycle(listint_t *list)
 {
-	listint_t *ptr_adv1;
-	listint_t *ptr_adv2;
+	listint_t *ptr_adv1 = list;
+	listint_t *ptr_adv2 = list;
 
-	ptr_adv1 = list;
-	ptr_adv2 = list;
-
-	while (ptr_adv1 != NULL && ptr_adv1->next != NULL)
+	while (ptr_adv2 != NULL && ptr_adv2->next != NULL)
 	{
 		ptr_adv1 = ptr_adv1->next;
 		ptr_adv2 = ptr_adv2->next->next;
