@@ -6,6 +6,8 @@ if __name__ == "__main__":
 
     if argc == 2:
         print("{:d} argument:".format(argc - 1))
+    elif argc == 1:
+        print("0 arguments.".format(argc - 1))
     else:
         print("{:d} arguments:".format(argc - 1))
 
