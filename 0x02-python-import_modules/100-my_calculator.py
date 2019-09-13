@@ -16,13 +16,13 @@ if __name__ == "__main__":
             exit(1)
 
         if ord(operator) == 43:
-            print(add(a, b))
+            print("{:d} + {:d} = {:d}".format(a, b, add(a, b)))
         elif ord(operator) == 45:
-            print(sub(a, b))
+            print("{:d} - {:d} = {:d}".format(a, b, sub(a, b)))
         elif ord(operator) == 42:
-            print(mul(a, b))
+            print("{:d} * {:d} = {:d}".format(a, b, mul(a, b)))
         elif ord(operator) == 47:
-            print(div(a, b))
+            print("{:d} / {:d} = {:d}".format(a, b, div(a, b)))
         else:
             print("Unknown operator. Available operators: +, -, * and /")
             exit(1)
