@@ -66,30 +66,23 @@ listint_t *get_middle_node(listint_t **head)
 int is_palindrome(listint_t **head)
 {
 	listint_t *first_half, *second_half;
-	listint_t **middle;
 
 	if (*head == NULL || (*head)->next == NULL)
 		return (1);
 
 	first_half = *head;
 
-	middle = malloc(sizeof(listint_t *));
-	if (middle == NULL)
-		return (-1);
-
-	*middle = get_middle_node(head);
-	second_half = reverse_listint(middle);
+	second_half = get_middle_node(head);
+	second_half = reverse_listint(&second_half);
 
 	while (second_half != NULL)
 	{
 		if (first_half->n != second_half->n)
 		{
-			free(middle);
 			return (0);
 		}
 		first_half = first_half->next;
 		second_half = second_half->next;
 	}
-	free(middle);
 	return (1);
 }
