@@ -68,13 +68,10 @@ int is_palindrome(listint_t **head)
 	listint_t *first_half, *second_half;
 	listint_t **middle;
 
-	if (*head == NULL)
+	if (*head == NULL || (*head)->next == NULL)
 		return (1);
 
 	first_half = *head;
-
-	if (first_half->next == NULL)
-		return (1);
 
 	middle = malloc(sizeof(listint_t *));
 	if (middle == NULL)
