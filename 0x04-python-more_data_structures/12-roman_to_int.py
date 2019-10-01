@@ -8,20 +8,36 @@ def isa_roman_character(character):
 
 
 def isa_roman_number(word):
-    return True if all([isa_roman_character(x) for x in word]) else False
+    if all([isa_roman_character(x) for x in word]):
+        menu = {'I': {'val': 1, 'type': 1, 'count': 0},
+                'V': {'val': 5, 'type': 5, 'count': 0},
+                'X': {'val': 10, 'type': 1, 'count': 0},
+                'L': {'val': 50, 'type': 5, 'count': 0},
+                'C': {'val': 100, 'type': 1, 'count': 0},
+                'D': {'val': 500, 'type': 5, 'count': 0},
+                'M': {'val': 1000, 'type': 1, 'count': 0}}
+
+        for ch in word:
+            if ch*4 in word:
+                return False
+
+        for elem in ['V', 'L', 'D']:
+            if word.count(elem) > 1:
+                return False
+
+
+
+
+
+    else:
+        return False
 
 
 def roman_to_int(roman_string):
     if isa_roman_number(roman_string):
         i = 0
         answer = []
-        menu = {'I': {'val': 1, 'type': 1},
-                'V': {'val': 5, 'type': 5},
-                'X': {'val': 10, 'type': 1},
-                'L': {'val': 50, 'type': 5},
-                'C': {'val': 100, 'type': 1},
-                'D': {'val': 500, 'type': 5},
-                'M': {'val': 1000, 'type': 1}}
+
 
         while i < len(roman_string):
             val1 = menu[roman_string[i]]['val']
