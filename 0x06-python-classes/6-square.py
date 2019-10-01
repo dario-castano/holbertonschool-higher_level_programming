@@ -20,18 +20,15 @@ class Square:
         Args:
             size: Size of the square
         """
-        if type(position) is tuple:
-            if position[0] >= 0 and position[1] >= 0:
-                if type(size) is int:
-                    if size < 0:
-                        raise ValueError("size must be >= 0")
-                    else:
-                        self.__size = size
-                        self.__position = position
+        if Square.__isa_pos2tuple(position):
+            if type(size) is int:
+                if Square.__is_positive(size):
+                    self.__size = size
+                    self.__position = position
                 else:
-                    raise TypeError("size must be an integer")
+                    raise ValueError("size must be >= 0")
             else:
-                raise TypeError(self.msg)
+                raise TypeError("size must be an integer")
         else:
             raise TypeError(self.msg)
 
@@ -70,10 +67,19 @@ class Square:
 
     @position.setter
     def position(self, value):
-        if type(value) is tuple:
-            if value[0] >= 0 and value[1] >= 0:
-                self.__position = value
-            else:
-                raise TypeError(self.msg)
+        if Square.__isa_pos2tuple(value):
+            self.__position = value
         else:
             raise TypeError(self.msg)
+
+    @staticmethod
+    def __is_positive(n):
+        return True if n >= 0 else False
+
+    @staticmethod
+    def __isa_pos2tuple(tup):
+        if (type(tup) is tuple and len(tup) == 2 and
+                all(map(Square.__is_positive, tup))):
+            return True
+        else:
+            return False
