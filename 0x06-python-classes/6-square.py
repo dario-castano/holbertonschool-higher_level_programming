@@ -13,33 +13,37 @@ class Square:
         ValueError: When size is less than 0
         TypeError: Size must be an int
     """
+    msg = "position must be a tuple of 2 positive integers"
+
     def __init__(self, size=0, position=(0, 0)):
         """
         Args:
             size: Size of the square
         """
-        try:
-            if size < 0:
-                raise ValueError("size must be >= 0")
+        if type(position) is tuple:
+            if position[0] >= 0 and position[1] >= 0:
+                if type(size) is int:
+                    if size < 0:
+                        raise ValueError("size must be >= 0")
+                    else:
+                        self.__size = size
+                        self.__position = position
+                else:
+                    raise TypeError("size must be an integer")
             else:
-                self.__size = size
-        except TypeError:
-            print("size must be an integer")
-
-        try:
-            if position[0] < 0 or position[1] < 0:
-                raise TypeError
-            else:
-                self.__position = position
-        except TypeError:
-            print("position must be a tuple of 2 positive integers")
+                raise TypeError(self.msg)
+        else:
+            raise TypeError(self.msg)
 
     def area(self):
         return self.__size ** 2
 
     def my_print(self):
         if self.size == 0:
-            print("")
+            if self.position[0] > 0:
+                print(' ' * self.position[0])
+            else:
+                print('')
         else:
             for i in range(self.size):
                 print(' ' * self.position[0] + '#' * self.size)
@@ -66,13 +70,10 @@ class Square:
 
     @position.setter
     def position(self, value):
-        try:
-            if type(value) is tuple and isinstance(value, int):
-                if value[0] >= 0 and value[1] >= 0:
-                    self.__position = value
-                else:
-                    raise TypeError
+        if type(value) is tuple:
+            if value[0] >= 0 and value[1] >= 0:
+                self.__position = value
             else:
-                raise TypeError
-        except TypeError:
-            print("position must be a tuple of 2 positive integers")
+                raise TypeError(self.msg)
+        else:
+            raise TypeError(self.msg)
