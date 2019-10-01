@@ -76,7 +76,7 @@ class Square:
     @staticmethod
     def __isa_pos2tuple(tup):
         if (type(tup) is tuple and len(tup) == 2 and
-                all(map(Square.__is_positive, tup))):
+                (tup[0] >= 0 and tup[1] >= 0)):
             return True
         else:
             return False
