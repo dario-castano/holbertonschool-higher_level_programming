@@ -26,7 +26,12 @@ class Square:
         except TypeError:
             print("size must be an integer")
 
-        self.__position = position
+        try:
+            if position[0] < 0 or position[1] < 0:
+                raise TypeError("position must be a tuple of 2 positive integers")
+            self.__position = position
+        except TypeError:
+            print("position must be a tuple of 2 positive integers")
 
     def area(self):
         return self.__size ** 2
@@ -36,7 +41,7 @@ class Square:
             print("")
         else:
             for i in range(self.size):
-                print('#' * self.size)
+                print(' ' * self.position[0] + '#' * self.size)
 
     @property
     def size(self):
