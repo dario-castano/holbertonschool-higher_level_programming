@@ -20,24 +20,21 @@ class Square:
         Args:
             size: Size of the square
         """
-        if Square.__isa_pos2tuple(position):
-            if type(size) is int:
-                if Square.__is_positive(size):
-                    self.__size = size
-                    self.__position = position
-                else:
-                    raise ValueError("size must be >= 0")
-            else:
-                raise TypeError("size must be an integer")
-        else:
+        if type(size) is not int:
+            raise TypeError("size must be an integer")
+        if not Square.__is_positive(size):
+            raise ValueError("size must be >= 0")
+        if not Square.__isa_pos2tuple(position):
             raise TypeError(self.msg)
+        self.__size = size
+        self.__position = position
 
     def area(self):
         return self.__size ** 2
 
     def my_print(self):
         if self.size == 0:
-            if self.position[0] > 0:
+            if self.position[0] > 0 and self.position[1] == 0:
                 print(' ' * self.position[0])
             else:
                 print('')
