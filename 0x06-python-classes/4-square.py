@@ -39,10 +39,8 @@ class Square:
         Args:
             value: Setter of size property
         """
-        try:
-            if value < 0:
-                raise ValueError("size must be >= 0")
-            else:
-                self.__size = value
-        except TypeError:
-            print("size must be an integer")
+        if type(value) is not int:
+            raise TypeError("size must be an integer")
+        if value < 0:
+            raise ValueError("size must be >= 0")
+        self.__size = value

@@ -18,13 +18,12 @@ class Square:
         Args:
             size: Size of the square
         """
-        try:
-            if size < 0:
-                raise ValueError("size must be >= 0")
-            else:
-                self.__size = size
-        except TypeError:
-            print("size must be an integer")
+        if isinstance(size, int) is False:
+            raise TypeError("size must be an integer")
+        if size < 0:
+            raise ValueError("size must be >= 0")
+        else:
+            self.__size = size
 
     def area(self):
         return self.__size ** 2
