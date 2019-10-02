@@ -37,7 +37,10 @@ class Square:
             out.append('\n' * self.position[1])
             for i in range(self.size):
                 out.append(' ' * self.position[0])
-                out.append('#' * self.size + '\n')
+                if i == self.size - 1:
+                    out.append('#' * self.size)
+                else:
+                    out.append('#' * self.size + '\n')
             return "".join(out)
 
     def area(self):
