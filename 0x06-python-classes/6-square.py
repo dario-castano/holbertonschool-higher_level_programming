@@ -71,6 +71,7 @@ class Square:
     @staticmethod
     def __isa_pos2tuple(tup):
         if (type(tup) is tuple and len(tup) == 2 and
+                (type(tup[0]) is int and type(tup[1]) is int) and
                 (tup[0] >= 0 and tup[1] >= 0)):
             return True
         else:
