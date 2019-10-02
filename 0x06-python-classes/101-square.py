@@ -30,7 +30,15 @@ class Square:
         self.__position = position
 
     def __repr__(self):
-        return self.my_print()
+        if self.size == 0:
+            return ""
+        else:
+            out = []
+            out.append('\n' * self.position[1])
+            for i in range(self.size):
+                out.append(' ' * self.position[0])
+                out.append('#' * self.size + '\n')
+            return "".join(out)
 
     def area(self):
         return self.__size ** 2
