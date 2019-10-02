@@ -29,6 +29,9 @@ class Square:
         self.__size = size
         self.__position = position
 
+    def __repr__(self):
+        self.my_print()
+
     def area(self):
         return self.__size ** 2
 
