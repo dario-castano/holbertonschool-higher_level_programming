@@ -22,7 +22,7 @@ class Square:
         """
         if type(size) is not int:
             raise TypeError("size must be an integer")
-        if not Square.__is_positive(size):
+        if size < 0:
             raise ValueError("size must be >= 0")
         if not Square.__isa_pos2tuple(position):
             raise TypeError(self.msg)
@@ -34,13 +34,12 @@ class Square:
 
     def my_print(self):
         if self.size == 0:
-            if self.position[0] > 0 and self.position[1] == 0:
-                print(' ' * self.position[0])
-            else:
-                print('')
+            print("")
         else:
+            print('\n' * self.position[1])
             for i in range(self.size):
-                print(' ' * self.position[0] + '#' * self.size)
+                print(' ' * self.position[0], end="")
+                print('#' * self.size)
 
     @property
     def size(self):
@@ -68,10 +67,6 @@ class Square:
             self.__position = value
         else:
             raise TypeError(self.msg)
-
-    @staticmethod
-    def __is_positive(n):
-        return True if n >= 0 else False
 
     @staticmethod
     def __isa_pos2tuple(tup):

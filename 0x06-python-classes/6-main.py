@@ -30,3 +30,13 @@ my_square_6 = Square(0, (5, 0))
 my_square_6.my_print()
 
 print("--")
+
+my_square_7 = Square(0, (0, 7))
+my_square_7.my_print()
+
+print("--")
+
+my_square_7 = Square(2, (4, 4))
+my_square_7.my_print()
+
+print("--")
