@@ -9,46 +9,152 @@ Args:
     div (int or float): Scalar used to divide each element.
 
 Returns:
-    list: an scalar division rounded to 2 decimals if successful,
+    list: an scalar division rounded up to 2 decimals if successful,
         otherwise raises an exception.
 
 Raises:
-    TypeError: if a or b are not float or int
+    TypeError:
+        When matrix is not a matrix (list of lists of int or floats).
+        When divisor is not an int or float
+        When internal lists (rows) has different sizes
+        When div is not a float or int
+    ZeroDivisionError:
+        When the user tries to perform a division by zero
 
 Examples:
     >>> matrix_divided = __import__('2-matrix_divided').matrix_divided
     >>> matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
     >>> divisor = 3
     >>> matrix_divided(matrix, divisor)
-    ANSWER
+    [[0.33, 0.67, 1.0], [1.33, 1.67, 2.0], [2.33, 2.67, 3.0]]
+
+    >>> matrix = [[0, 0, 0]]
+    >>> divisor = 3
+    >>> matrix_divided(matrix, divisor)
+    [[0.0, 0.0, 0.0]]
+
+    >>> matrix = [[1.56, 2.556, 3], [4, 5, 6], [7.89, 8, 9]]
+    >>> divisor = 2.7182
+    >>> matrix_divided(matrix, divisor)
+    [[0.57, 0.94, 1.1], [1.47, 1.84, 2.21], [2.9, 2.94, 3.31]]
+
+    >>> matrix = [[1.56, 2.556, 3], [4, 5, 6], [7.89, 8, 9]]
+    >>> divisor = (3-2j)
+    >>> matrix_divided(matrix, divisor)
+    Traceback (most recent call last):
+        ...
+    TypeError: div must be a number
+
+    >>> matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+    >>> divisor = 'w'
+    >>> matrix_divided(matrix, divisor)
+    Traceback (most recent call last):
+        ...
+    TypeError: div must be a number
 
     >>> matrix = [[0, 2, 3], [4, 0, 6], [0, 8, 9]]
     >>> divisor = 0
     >>> matrix_divided(matrix, divisor)
-    ANSWER
+    Traceback (most recent call last):
+        ...
+    ZeroDivisionError: division by zero
+
+    >>> matrix = [[0, 2, 3], [4, 0, 6], [0, 8, 9, 5]]
+    >>> divisor = 3
+    >>> matrix_divided(matrix, divisor)
+    Traceback (most recent call last):
+        ...
+    TypeError: Each row of the matrix must have the same size
+
+    >>> matrix = [0, 0, 0]
+    >>> divisor = 3
+    >>> matrix_divided(matrix, divisor)
+    Traceback (most recent call last):
+        ...
+    TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+    >>> matrix = [[0, 2, 3], [4, 'f', 6], [0, 8, 9]]
+    >>> divisor = 0
+    >>> matrix_divided(matrix, divisor)
+    Traceback (most recent call last):
+        ...
+    TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+    >>> matrix = [[0, 2, 3], [4, 9, 6], [0, 8, [1, 2, 3]]]
+    >>> divisor = 0
+    >>> matrix_divided(matrix, divisor)
+    Traceback (most recent call last):
+        ...
+    TypeError: matrix must be a matrix (list of lists) of integers/floats
 
     >>> matrix = []
     >>> divisor = 3
     >>> matrix_divided(matrix, divisor)
-    ANSWER
+    Traceback (most recent call last):
+        ...
+    TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+    >>> matrix = [[[[[1]]]]]
+    >>> divisor = 3
+    >>> matrix_divided(matrix, divisor)
+    Traceback (most recent call last):
+        ...
+    TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+    >>> matrix = []
+    >>> divisor = 'm'
+    >>> matrix_divided(matrix, divisor)
+    Traceback (most recent call last):
+        ...
+    TypeError: matrix must be a matrix (list of lists) of integers/floats
 
     >>> matrix = [0]
     >>> divisor = []
     >>> matrix_divided(matrix, divisor)
-    ANSWER
+    Traceback (most recent call last):
+        ...
+    TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+    >>> matrix = 3
+    >>> divisor = 3
+    >>> matrix_divided(matrix, divisor)
+    Traceback (most recent call last):
+        ...
+    TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+    >>> matrix = None
+    >>> divisor = 3
+    >>> matrix_divided(matrix, divisor)
+    Traceback (most recent call last):
+        ...
+    TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+    >>> matrix = {0}
+    >>> divisor = 2
+    >>> matrix_divided(matrix, divisor)
+    Traceback (most recent call last):
+        ...
+    TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+    >>> matrix = {'oe': 0}
+    >>> divisor = 2
+    >>> matrix_divided(matrix, divisor)
+    Traceback (most recent call last):
+        ...
+    TypeError: matrix must be a matrix (list of lists) of integers/floats
 
     >>> matrix = [{}, [], ()]
     >>> divisor = [1]
     >>> matrix_divided(matrix, divisor)
-    ANSWER
+    Traceback (most recent call last):
+        ...
+    TypeError: matrix must be a matrix (list of lists) of integers/floats
 
-    >>> add_integer('b')
+    >>> matrix = ['el barto']
+    >>> divisor = ['h']
+    >>> matrix_divided(matrix, divisor)
     Traceback (most recent call last):
         ...
-    TypeError: a must be an integer
-    >>> add_integer(23.55, None)
-    Traceback (most recent call last):
-        ...
-    TypeError: b must be an integer
+    TypeError: matrix must be a matrix (list of lists) of integers/floats
 
 """
