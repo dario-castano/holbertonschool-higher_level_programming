@@ -1,0 +1,55 @@
+"""
+A function that prints a text with 2 new lines after each of
+these characters: . ? :
+
+Args:
+    text (str): Text to replace indentation.
+
+Returns:
+    void: prints the modified text.
+
+Raises:
+    TypeError: If text is not a string.
+
+Examples:
+    >>> text_indentation = __import__('5-text_indentation').text_indentation
+    >>> text = "Hola? señor Simpson: Ud. es diabolico!. FIN"
+    >>> text_indentation(text)
+    Hola?
+    <BLANKLINE>
+    señor Simpson:
+    <BLANKLINE>
+    Ud.
+    <BLANKLINE>
+    es diabolico!.
+    <BLANKLINE>
+    FIN
+
+    >>> text = "?:."
+    >>> text_indentation(text)
+    ?
+    <BLANKLINE>
+    :
+    <BLANKLINE>
+    .
+    <BLANKLINE>
+
+    >>> text = 0
+    >>> text_indentation(text)
+    Traceback (most recent call last):
+        ...
+    TypeError: text must be a string
+
+    >>> text = ['Flanders']
+    >>> text_indentation(text)
+    Traceback (most recent call last):
+        ...
+    TypeError: text must be a string
+
+    >>> text = []
+    >>> text_indentation(text)
+    Traceback (most recent call last):
+        ...
+    TypeError: text must be a string
+
+"""
