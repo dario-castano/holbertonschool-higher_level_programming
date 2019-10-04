@@ -1,0 +1,77 @@
+"""
+say_my_name - a function that prints "My name is <first name> <last name>".
+
+Args:
+    first_name (str): First name.
+    last_name (str, optional): Last name.
+        If is not included, defaults to an empty string.
+
+Returns:
+    void: only prints the string "My name is <first name> <last name>",
+        otherwise raises an exception.
+
+Raises:
+    TypeError: If first_name or last_name are not strings
+
+Examples:
+    >>> say_my_name = __import__('3-say_my_name').say_my_name
+    >>> say_my_name("Mr.", "Robot")
+    My name is Mr. Robot
+
+    >>> say_my_name("El Bromas")
+    My name is El Bromas 
+
+    >>> say_my_name("")
+    My name is  
+
+    >>> say_my_name(666)
+    Traceback (most recent call last):
+        ...
+    TypeError: first_name must be a string
+
+    >>> say_my_name((0+4j), "Gomez")
+    Traceback (most recent call last):
+        ...
+    TypeError: first_name must be a string
+
+    >>> say_my_name(['MANDIBULA'])
+    Traceback (most recent call last):
+        ...
+    TypeError: first_name must be a string
+
+    >>> say_my_name(['P', 'R', 'R', 'O'])
+    Traceback (most recent call last):
+        ...
+    TypeError: first_name must be a string
+
+    >>> say_my_name(666, {'e'})
+    Traceback (most recent call last):
+        ...
+    TypeError: first_name must be a string
+
+    >>> say_my_name(666, 1337)
+    Traceback (most recent call last):
+        ...
+    TypeError: first_name must be a string
+
+    >>> say_my_name("Elvis", None)
+    Traceback (most recent call last):
+        ...
+    TypeError: last_name must be a string
+
+    >>> say_my_name("Elvis", 9)
+    Traceback (most recent call last):
+        ...
+    TypeError: last_name must be a string
+
+    >>> say_my_name("Elvis", ['costelo'])
+    Traceback (most recent call last):
+        ...
+    TypeError: last_name must be a string
+
+    >>> say_my_name("Ramón", {'apellido': 'Valdéz'})
+    Traceback (most recent call last):
+        ...
+    TypeError: last_name must be a string
+
+"""
