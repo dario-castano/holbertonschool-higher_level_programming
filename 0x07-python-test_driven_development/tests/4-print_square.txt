@@ -1,9 +1,6 @@
 """
 print_square - A function who divides a matrix by a scalar.
 
-Note:
-     elements in matrix must be the same size.
-
 Args:
     size (int): Size of the square.
 
