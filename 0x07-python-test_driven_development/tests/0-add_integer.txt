@@ -1,0 +1,39 @@
+"""
+add_integer - A function who sums a pair of numbers.
+
+Note:
+    a and b will be casted to int if they are floats.
+
+Args:
+    a (int or float): First element of the sum.
+    b (int or float, optional): Second element of the sum.
+        If is not included, defaults to 98.
+
+Returns:
+    int: a binary sum if successful, otherwise raises an exception.
+
+Raises:
+    TypeError: if a or b are not float or int
+
+Examples:
+    >>> add_integer = __import__('0-add_integer').add_integer
+    >>> add_integer(1, 2)
+    3
+    >>> add_integer(100, -2)
+    98
+    >>> add_integer(2)
+    100
+    >>> add_integer(100.3, -2)
+    98
+    >>> add_integer(667.36, -1.766669)
+    666
+    >>> add_integer('b')
+    Traceback (most recent call last):
+        ...
+    TypeError: a must be an integer
+    >>> add_integer(23.55, None)
+    Traceback (most recent call last):
+        ...
+    TypeError: b must be an integer
+
+"""

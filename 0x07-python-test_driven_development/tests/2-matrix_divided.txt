@@ -1,0 +1,54 @@
+"""
+matrix_divided - A function who divides a matrix by a scalar.
+
+Note:
+     elements in matrix must be the same size.
+
+Args:
+    matrix (list): List of lists.
+    div (int or float): Scalar used to divide each element.
+
+Returns:
+    list: an scalar division rounded to 2 decimals if successful,
+        otherwise raises an exception.
+
+Raises:
+    TypeError: if a or b are not float or int
+
+Examples:
+    >>> matrix_divided = __import__('2-matrix_divided').matrix_divided
+    >>> matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+    >>> divisor = 3
+    >>> matrix_divided(matrix, divisor)
+    ANSWER
+
+    >>> matrix = [[0, 2, 3], [4, 0, 6], [0, 8, 9]]
+    >>> divisor = 0
+    >>> matrix_divided(matrix, divisor)
+    ANSWER
+
+    >>> matrix = []
+    >>> divisor = 3
+    >>> matrix_divided(matrix, divisor)
+    ANSWER
+
+    >>> matrix = [0]
+    >>> divisor = []
+    >>> matrix_divided(matrix, divisor)
+    ANSWER
+
+    >>> matrix = [{}, [], ()]
+    >>> divisor = [1]
+    >>> matrix_divided(matrix, divisor)
+    ANSWER
+
+    >>> add_integer('b')
+    Traceback (most recent call last):
+        ...
+    TypeError: a must be an integer
+    >>> add_integer(23.55, None)
+    Traceback (most recent call last):
+        ...
+    TypeError: b must be an integer
+
+"""
