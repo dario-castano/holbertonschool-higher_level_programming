@@ -10,6 +10,10 @@ class TestMaxInteger(unittest.TestCase):
         nums = [1, 2, 3, 4, 5]
         self.assertEqual(max_integer(nums), 5)
 
+    def test_max_at_begin(self):
+        nums = [5, 4, 3, 2, 1]
+        self.assertEqual(max_integer(nums), 5)
+
     def test_tuple_ints(self):
         nums = (1, 2, 3, 4, 5)
         self.assertEqual(max_integer(nums), 5)
