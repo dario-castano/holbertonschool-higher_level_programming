@@ -66,8 +66,8 @@ def can_multiplicate(m_a, m_b):
         raise TypeError(te_size_ma)
     elif not all_rows_has_same_size(m_b):
         raise TypeError(te_size_mb)
-    elif ((get_dim(m_a)[1] != get_dim(m_b)[0])
-            or (get_dim(m_a)[0] == 0)):
+    elif ((get_dim(m_a)[1] != get_dim(m_b)[0]) or
+          (get_dim(m_a)[0] == 0)):
         raise ValueError(ve_cantmul)
     else:
         return True
