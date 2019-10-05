@@ -32,6 +32,36 @@ Examples:
     >>> add_integer(667.36, -1.766669)
     666
 
+    >>> add_integer(float('nan'))
+    Traceback (most recent call last):
+        ...
+    TypeError: a must be an integer
+
+    >>> add_integer(1, float('nan'))
+    Traceback (most recent call last):
+        ...
+    TypeError: b must be an integer
+
+    >>> add_integer(float('inf'))
+    Traceback (most recent call last):
+        ...
+    TypeError: a must be an integer
+
+    >>> add_integer(float('-inf'))
+    Traceback (most recent call last):
+        ...
+    TypeError: a must be an integer
+
+    >>> add_integer(3, float('inf'))
+    Traceback (most recent call last):
+        ...
+    TypeError: b must be an integer
+
+    >>> add_integer(5, float('-inf'))
+    Traceback (most recent call last):
+        ...
+    TypeError: b must be an integer
+
     >>> add_integer('b')
     Traceback (most recent call last):
         ...
