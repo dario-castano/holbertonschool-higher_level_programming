@@ -1,0 +1,276 @@
+"""
+matrix_mul - function that multiplies 2 matrices.
+
+Note:
+     lists inside the matrix must be the same size.
+
+Args:
+    m_a (list): List of lists.
+    m_b (list): List of lists.
+
+Returns:
+    list: A matrix multiplication if successful,
+        otherwise raises an exception.
+
+Raises:
+    TypeError:
+        If m_a or m_b is not a list.
+        If m_a or m_b is not a list of lists.
+        If m_a or m_b is empty.
+        If one element of those list of lists is not an integer or a float.
+        If all rows should not be of the same size
+    ValueError:
+        If the multiplication cannot be done
+
+Examples:
+    >>> matrix_mul = __import__('100-matrix_mul').matrix_mul
+    >>> ma = [[1, 2], [3, 4]]
+    >>> mb = [[5, 6], [7, 8]]
+    >>> matrix_mul(ma, mb)
+    [[19, 22], [43, 50]]
+
+    >>> matrix_mul([[1, 2], [3, 4]], [[1, 2], [3, 4]])
+    [[7, 10], [15, 22]]
+
+    >>> matrix_mul([[1, 2]], [[3, 4], [5, 6]])
+    [[13, 16]]
+
+    >>> ma = 6
+    >>> mb = [1, 2]
+    >>> matrix_mul(ma, mb)
+    Traceback (most recent call last):
+        ...
+    TypeError: m_a must be a list
+
+    >>> ma = 6.666
+    >>> mb = [1, 2]
+    >>> matrix_mul(ma, mb)
+    Traceback (most recent call last):
+        ...
+    TypeError: m_a must be a list
+
+    >>> ma = (6+6j)
+    >>> mb = [1, 2]
+    >>> matrix_mul(ma, mb)
+    Traceback (most recent call last):
+        ...
+    TypeError: m_a must be a list
+
+    >>> ma = 'b'
+    >>> mb = [1, 2]
+    >>> matrix_mul(ma, mb)
+    Traceback (most recent call last):
+        ...
+    TypeError: m_a must be a list
+
+    >>> ma = None
+    >>> mb = [1, 2]
+    >>> matrix_mul(ma, mb)
+    Traceback (most recent call last):
+        ...
+    TypeError: m_a must be a list
+
+    >>> ma = {5}
+    >>> mb = [1, 2]
+    >>> matrix_mul(ma, mb)
+    Traceback (most recent call last):
+        ...
+    TypeError: m_a must be a list
+
+    >>> ma = {'n': 5}
+    >>> mb = [1, 2]
+    >>> matrix_mul(ma, mb)
+    Traceback (most recent call last):
+        ...
+    TypeError: m_a must be a list
+
+    >>> mb = 6
+    >>> ma = [1, 2]
+    >>> matrix_mul(ma, mb)
+    Traceback (most recent call last):
+        ...
+    TypeError: m_b must be a list
+
+    >>> mb = 6.666
+    >>> ma = [1, 2]
+    >>> matrix_mul(ma, mb)
+    Traceback (most recent call last):
+        ...
+    TypeError: m_b must be a list
+
+    >>> mb = (6+6j)
+    >>> ma = [1, 2]
+    >>> matrix_mul(ma, mb)
+    Traceback (most recent call last):
+        ...
+    TypeError: m_b must be a list
+
+    >>> mb = 'b'
+    >>> ma = [1, 2]
+    >>> matrix_mul(ma, mb)
+    Traceback (most recent call last):
+        ...
+    TypeError: m_b must be a list
+
+    >>> mb = None
+    >>> ma = [1, 2]
+    >>> matrix_mul(ma, mb)
+    Traceback (most recent call last):
+        ...
+    TypeError: m_b must be a list
+
+    >>> mb = {5}
+    >>> ma = [1, 2]
+    >>> matrix_mul(ma, mb)
+    Traceback (most recent call last):
+        ...
+    TypeError: m_b must be a list
+
+    >>> mb = {'n': 5}
+    >>> ma = [1, 2]
+    >>> matrix_mul(ma, mb)
+    Traceback (most recent call last):
+        ...
+    TypeError: m_b must be a list
+
+    >>> ma = [0, 0]
+    >>> mb = [[1, 2], [3, 4]]
+    >>> matrix_mul(ma, mb)
+    Traceback (most recent call last):
+        ...
+    TypeError: m_a must be a list of lists
+
+    >>> ma = [1, [2], {3}, 'f']
+    >>> mb = [[1, 2], [3, 4]]
+    >>> matrix_mul(ma, mb)
+    Traceback (most recent call last):
+        ...
+    TypeError: m_a must be a list of lists
+
+    >>> mb = [0, 0]
+    >>> ma = [[1, 2], [3, 4]]
+    >>> matrix_mul(ma, mb)
+    Traceback (most recent call last):
+        ...
+    TypeError: m_b must be a list of lists
+
+    >>> mb = [1, [2], {3}, 'f']
+    >>> ma = [[1, 2], [3, 4]]
+    >>> matrix_mul(ma, mb)
+    Traceback (most recent call last):
+        ...
+    TypeError: m_b must be a list of lists
+
+    >>> ma = []
+    >>> mb = [[1, 2], [3, 4]]
+    >>> matrix_mul(ma, mb)
+    Traceback (most recent call last):
+        ...
+    ValueError: m_a can't be empty
+
+    >>> ma = [[]]
+    >>> mb = [[1, 2], [3, 4]]
+    >>> matrix_mul(ma, mb)
+    Traceback (most recent call last):
+        ...
+    ValueError: m_a can't be empty
+
+    >>> mb = []
+    >>> ma = [[1, 2], [3, 4]]
+    >>> matrix_mul(ma, mb)
+    Traceback (most recent call last):
+        ...
+    ValueError: m_b can't be empty
+
+    >>> mb = [[]]
+    >>> ma = [[1, 2], [3, 4]]
+    >>> matrix_mul(ma, mb)
+    Traceback (most recent call last):
+        ...
+    ValueError: m_b can't be empty
+
+    >>> ma = [[1, 2], ['f', 4]]
+    >>> mb = [[5, 6], [7, 8]]
+    >>> matrix_mul(ma, mb)
+    Traceback (most recent call last):
+        ...
+    TypeError: m_a should contain only integers or floats
+
+    >>> ma = [[1, 2], [{'a': 4}, 4]]
+    >>> mb = [[5, 6], [7, 8]]
+    >>> matrix_mul(ma, mb)
+    Traceback (most recent call last):
+        ...
+    TypeError: m_a should contain only integers or floats
+
+    >>> ma = [[1, 2], [None, 4]]
+    >>> mb = [[5, 6], [7, 8]]
+    >>> matrix_mul(ma, mb)
+    Traceback (most recent call last):
+        ...
+    TypeError: m_a should contain only integers or floats
+
+    >>> mb = [[1, 2], ['f', 4]]
+    >>> ma = [[5, 6], [7, 8]]
+    >>> matrix_mul(ma, mb)
+    Traceback (most recent call last):
+        ...
+    TypeError: m_b should contain only integers or floats
+
+    >>> mb = [[1, 2], [{'a': 4}, 4]]
+    >>> ma = [[5, 6], [7, 8]]
+    >>> matrix_mul(ma, mb)
+    Traceback (most recent call last):
+        ...
+    TypeError: m_b should contain only integers or floats
+
+    >>> mb = [[1, 2], [None, 4]]
+    >>> ma = [[5, 6], [7, 8]]
+    >>> matrix_mul(ma, mb)
+    Traceback (most recent call last):
+        ...
+    TypeError: m_b should contain only integers or floats
+
+    >>> ma = [[1, 2], [3, 4], [5]]
+    >>> mb = [[5, 6], [7, 8]]
+    >>> matrix_mul(ma, mb)
+    Traceback (most recent call last):
+        ...
+    TypeError: each row of m_a must be of the same size
+
+    >>> ma = [[1, 2], [3, 4], [5, 6, 7, 8]]
+    >>> mb = [[5, 6], [7, 8]]
+    >>> matrix_mul(ma, mb)
+    Traceback (most recent call last):
+        ...
+    TypeError: each row of m_a must be of the same size
+
+    >>> mb = [[1, 2], [3, 4], [5]]
+    >>> ma = [[5, 6], [7, 8]]
+    >>> matrix_mul(ma, mb)
+    Traceback (most recent call last):
+        ...
+    TypeError: each row of m_b must be of the same size
+
+    >>> mb = [[1, 2], [3, 4], [5, 6, 7, 8]]
+    >>> ma = [[5, 6], [7, 8]]
+    >>> matrix_mul(ma, mb)
+    Traceback (most recent call last):
+        ...
+    TypeError: each row of m_b must be of the same size
+
+    >>> ma = [[5]]
+    >>> mb = [[5, 6], [7, 8]]
+    >>> matrix_mul(ma, mb)
+    Traceback (most recent call last):
+        ...
+    ValueError: m_a and m_b can't be multiplied
+
+    >>> ma = [[5, 6, 7], [1, 2, 3]]
+    >>> mb = [[8, 9]]
+    >>> matrix_mul(ma, mb)
+    Traceback (most recent call last):
+        ...
+    ValueError: m_a and m_b can't be multiplied
+
+"""
