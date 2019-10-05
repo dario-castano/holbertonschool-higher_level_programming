@@ -74,6 +74,7 @@ def can_multiplicate(m_a, m_b):
 
 
 def zero_matrix(rows, cols):
+    """Create a matrix filled wtih zeros"""
     answer = []
     for i in range(rows):
         answer.append([0 for x in range(cols)])
@@ -81,6 +82,7 @@ def zero_matrix(rows, cols):
 
 
 def dot_product(la, lb):
+    """Performs dot product between 2 lists"""
     return sum([la[n] * lb[n] for n in range(len(la))])
 
 
