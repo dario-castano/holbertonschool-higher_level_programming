@@ -15,3 +15,18 @@ class BaseGeometry:
             raise ValueError(name + " must be greater than 0")
         else:
             return value
+
+
+class Rectangle(BaseGeometry):
+    """A Rectangle That inherits from BaseGeometry"""
+    def __init__(self, width, height):
+        """Constructor"""
+        self.__width = self.integer_validator('width', width)
+        self.__height = self.integer_validator('height', height)
+
+    def __str__(self):
+        return "[Rectangle] {:d}/{:d}".format(self.__width, self.__height)
+
+    def area(self):
+        """Calculate the area of the Rectangle"""
+        return self.__width * self.__height
