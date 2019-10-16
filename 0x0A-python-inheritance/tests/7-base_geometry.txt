@@ -1,0 +1,45 @@
+"""
+BaseGeometry - Class who makes a geometric element.
+
+Examples:
+    >>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
+    >>> bg = BaseGeometry()
+    >>> bg.integer_validator('pupu', 5)
+    5
+
+    >>> bg.integer_validator('nene', 987987987987987)
+    987987987987987
+
+    >>> bg.integer_validator('a', -1)
+    Traceback (most recent call last):
+    ...
+    ValueError: a must be greater than 0
+
+    >>> bg.integer_validator('kk', 0)
+    Traceback (most recent call last):
+    ...
+    ValueError: kk must be greater than 0
+
+    >>> bd = BaseGeometry(1)
+    Traceback (most recent call last):
+    ...
+    TypeError: object() takes no parameters
+
+    >>> bg.integer_validator('pepe', 0.666)
+    Traceback (most recent call last):
+    ...
+    TypeError: pepe must be an integer
+
+    >>> bg.integer_validator('AAA', 'p')
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+      File "<stdin>", line 6, in integer_validator
+    TypeError: AAA must be an integer
+
+    >>> bg.integer_validator()
+    Traceback (most recent call last):
+    ...
+    TypeError: integer_validator() missing 2 required positional arguments: 'name' and 'value'
+
+
+"""

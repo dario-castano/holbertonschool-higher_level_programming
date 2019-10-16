@@ -1,0 +1,140 @@
+"""
+MyList - Class who extends from list.
+
+Attributes:
+    Inherits all attributes from list.
+
+Examples:
+    >>> MyList = __import__('1-my_list').MyList
+    >>> mlist = MyList()
+    >>> mlist
+    []
+
+    >>> mlist.append(5)
+    >>> mlist.append(4)
+    >>> mlist.append(3)
+    >>> mlist
+    [5, 4, 3]
+
+    >>> mlist.print_sorted()
+    [3, 4, 5]
+
+    >>> mlist
+    [5, 4, 3]
+
+    >>> mlist = MyList()
+    >>> mlist
+    []
+
+    >>> mlist.append(-3)
+    >>> mlist.append(-4)
+    >>> mlist.append(-5)
+    >>> mlist
+    [-3, -4, -5]
+
+    >>> mlist.print_sorted()
+    [-5, -4, -3]
+
+    >>> mlist
+    [-3, -4, -5]
+
+    >>> mlist = MyList()
+    >>> mlist
+    []
+
+    >>> mlist.append(1)
+    >>> mlist.append(0)
+    >>> mlist.append(-1)
+    >>> mlist
+    [1, 0, -1]
+
+    >>> mlist.print_sorted()
+    [-1, 0, 1]
+
+    >>> mlist
+    [1, 0, -1]
+
+
+    >>> mlist = MyList()
+    >>> mlist
+    []
+
+    >>> mlist.append(1)
+    >>> mlist.append(1)
+    >>> mlist.append(2)
+    >>> mlist
+    [1, 1, 2]
+
+    >>> mlist.print_sorted()
+    [1, 1, 2]
+
+    >>> mlist
+    [1, 1, 2]
+
+
+    >>> mlist = MyList()
+    >>> mlist
+    []
+
+    >>> mlist.append(1)
+    >>> mlist.append(2)
+    >>> mlist.append(1)
+    >>> mlist
+    [1, 2, 1]
+
+    >>> mlist.print_sorted()
+    [1, 1, 2]
+
+    >>> mlist
+    [1, 2, 1]
+
+
+    >>> mlist = MyList()
+    >>> mlist
+    []
+
+    >>> mlist.append(2)
+    >>> mlist.append(1)
+    >>> mlist.append(2)
+    >>> mlist
+    [2, 1, 2]
+
+    >>> mlist.print_sorted()
+    [1, 2, 2]
+
+    >>> mlist
+    [2, 1, 2]
+
+
+    >>> mlist = MyList()
+    >>> mlist
+    []
+
+    >>> mlist.append(0)
+    >>> mlist.append(0)
+    >>> mlist.append(0)
+    >>> mlist
+    [0, 0, 0]
+
+    >>> mlist.print_sorted()
+    [0, 0, 0]
+
+    >>> mlist
+    [0, 0, 0]
+
+    >>> m = MyList(1)
+    Traceback (most recent call last):
+    ...
+    TypeError: __init__() takes 1 positional argument but 2 were given
+
+    >>> m = MyList([])
+    Traceback (most recent call last):
+    ...
+    TypeError: __init__() takes 1 positional argument but 2 were given
+
+    >>> m = MyList('a')
+    Traceback (most recent call last):
+    ...
+    TypeError: __init__() takes 1 positional argument but 2 were given
+
+"""
