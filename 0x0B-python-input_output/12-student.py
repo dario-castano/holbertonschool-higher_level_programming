@@ -17,10 +17,6 @@ class Student:
         else:
             isa_str_list = all([type(x) is str for x in attrs])
             if isa_str_list:
-                new_dict = dict()
-                old_dict = self.__dict__
-                for atr in attrs:
-                    if atr in old_dict:
-                        new_dict.update({atr: old_dict[atr]})
-                return new_dict
+                return {key: self.__dict__[key]
+                        for key in attrs if key in self.__dict__}
             return self.__dict__

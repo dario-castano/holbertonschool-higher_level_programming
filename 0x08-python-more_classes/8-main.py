@@ -16,3 +16,20 @@ if my_rectangle_1 is Rectangle.bigger_or_equal(my_rectangle_1, my_rectangle_2):
     print("my_rectangle_1 is bigger or equal to my_rectangle_2")
 else:
     print("my_rectangle_2 is bigger than my_rectangle_1")
+
+print("------ Checker A ------")
+
+myrectangle1 = Rectangle(8, 4)
+myrectangle2 = Rectangle(2, 3)
+print(myrectangle1 == Rectangle.bigger_or_equal(myrectangle1, myrectangle2))
+
+print("------ Checker B ------")
+
+myrectangle1 = Rectangle(8, 4)
+myrectangle2 = Rectangle(4, 8)
+print(myrectangle1 == Rectangle.bigger_or_equal(myrectangle1, myrectangle2))
+
+myrectangle1 = Rectangle(8, 4)
+myrectangle2 = Rectangle(1, 8)
+
+print(myrectangle2 == Rectangle.bigger_or_equal(myrectangle1, "Rect"))
