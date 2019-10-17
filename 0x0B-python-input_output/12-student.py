@@ -23,3 +23,4 @@ class Student:
                     if atr in old_dict:
                         new_dict.update({atr: old_dict[atr]})
                 return new_dict
+            return self.__dict__
