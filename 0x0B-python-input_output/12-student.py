@@ -12,7 +12,9 @@ class Student:
 
     def to_json(self, attrs=None):
         """ retrieves a dictionary representation of a Student"""
-        if attrs is None or not attrs:
+        if (attrs is None or
+                not attrs or
+                not type(attrs) is list):
             return self.__dict__
         else:
             isa_str_list = all([type(x) is str for x in attrs])
