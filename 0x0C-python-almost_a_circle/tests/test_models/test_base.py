@@ -7,7 +7,7 @@ class TestBase(unittest.TestCase):
     def tearDown(self):
         Base._Base__nb_objects = 0
 
-    def test_instance(self):
+    def test_base_instance(self):
         obj = Base()
         self.assertIsInstance(obj, Base)
 
