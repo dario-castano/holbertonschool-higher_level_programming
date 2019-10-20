@@ -11,17 +11,17 @@ class TestBase(unittest.TestCase):
         obj = Base()
         self.assertIsInstance(obj, Base)
 
-    def test_attr_id_exists(self):
+    def test_base_attr_id_exists(self):
         obj = Base()
         failure_msg = 'property id not found'
         self.assertTrue(hasattr(obj, 'id'), msg=failure_msg)
 
-    def test_nb_objects_exists(self):
+    def test_base_nb_objects_exists(self):
         obj = Base()
         failure_msg = 'global var __nb_objects not found'
         self.assertTrue(hasattr(obj, '_Base__nb_objects'), msg=failure_msg)
 
-    def test_default_id(self):
+    def test_base_default_id(self):
         self.assertEqual(Base._Base__nb_objects, 0)
         objs = [Base() for x in range(5)]
         ans = [x.id for x in objs]
@@ -29,12 +29,12 @@ class TestBase(unittest.TestCase):
         failure_msg = '{} and {} are different'.format(ans, target)
         self.assertListEqual(ans, target, msg=failure_msg)
 
-    def test_manual_id(self):
+    def test_base_manual_id(self):
         ids = [234, 456, 3445, 9999, 666, 45, 56]
         objs = [Base(x) for x in ids]
         self.assertListEqual([x.id for x in objs], ids)
 
-    def test_mixed_ids(self):
+    def test_base_mixed_ids(self):
         ids = [None, 111, None, 222, None, 333]
         objs = [Base(x) for x in ids]
         ans = [k.id for k in objs]
