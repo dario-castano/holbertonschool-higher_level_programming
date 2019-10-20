@@ -10,6 +10,15 @@ class Rectangle(Base):
         self.x = x
         self.y = y
 
+    def __str__(self):
+        return "[Rectangle] ({:d}) {:d}/{:d} - {:d}/{:d}".format(
+            self.id,
+            self.x,
+            self.y,
+            self.width,
+            self.height
+        )
+
     @property
     def width(self):
         return self.__width
@@ -61,3 +70,24 @@ class Rectangle(Base):
             raise ValueError('y must be >= 0')
         else:
             self.__y = value
+
+    def area(self):
+        return self.width * self.height
+
+    def display(self):
+        out = []
+        for i in range(self.y):
+            out.append('\n')
+        for j in range(self.height):
+            out.append(' ' * self.x + '#' * self.width + '\n')
+        print(''.join(out), end="")
+
+    def update(self, *args, **kwargs):
+        if args is None or not args:
+            for key, value in kwargs.items():
+                setattr(self, key, value)
+        else:
+            valid_args = args[:5]
+            args_list = ['id', 'width', 'height', 'x', 'y']
+            for index in range(len(valid_args)):
+                setattr(self, args_list[index], valid_args[index])
