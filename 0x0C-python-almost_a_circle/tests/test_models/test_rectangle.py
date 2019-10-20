@@ -218,3 +218,124 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(obj.height, 30)
         self.assertEqual(obj.x, 40)
         self.assertEqual(obj.y, 50)
+        obj.update(1, 2, 3, 4, 5, 6, 7, 8, 9)
+        self.assertEqual(obj.id, 1)
+        self.assertEqual(obj.width, 2)
+        self.assertEqual(obj.height, 3)
+        self.assertEqual(obj.x, 4)
+        self.assertEqual(obj.y, 5)
+
+    def test_rectangle_update_args_type_validation(self):
+        obj = Rectangle(1, 1)
+
+        with self.assertRaises(TypeError) as context:
+            obj.update(1, 'b')
+        self.assertIn('width must be an integer', str(context.exception))
+
+        with self.assertRaises(TypeError) as context:
+            obj.update(1, 2, {})
+        self.assertIn('height must be an integer', str(context.exception))
+
+        with self.assertRaises(TypeError) as context:
+            obj.update(1, 1, 1, {'a': 1})
+        self.assertIn('x must be an integer', str(context.exception))
+
+        with self.assertRaises(TypeError) as context:
+            obj.update(1, 1, 1, 4, [31])
+        self.assertIn('y must be an integer', str(context.exception))
+
+    def test_rectangle_update_args_value_validation(self):
+        obj = Rectangle(1, 1)
+
+        with self.assertRaises(ValueError) as context:
+            obj.update(1, 0)
+        self.assertIn('width must be > 0', str(context.exception))
+
+        with self.assertRaises(ValueError) as context:
+            obj.update(1, -20, 1)
+        self.assertIn('width must be > 0', str(context.exception))
+
+        with self.assertRaises(ValueError) as context:
+            obj.update(1, 1, 0)
+        self.assertIn('height must be > 0', str(context.exception))
+
+        with self.assertRaises(ValueError) as context:
+            obj.update(1, 1, -69)
+        self.assertIn('height must be > 0', str(context.exception))
+
+        with self.assertRaises(ValueError) as context:
+            obj.update(1, 1, 1, -30)
+        self.assertIn('x must be >= 0', str(context.exception))
+
+        with self.assertRaises(ValueError) as context:
+            obj.update(1, 1, 1, 1, -80)
+        self.assertIn('y must be >= 0', str(context.exception))
+
+    def test_valid_kwargs(self):
+        obj = Rectangle(1, 1)
+        obj.update()
+        self.assertEqual(obj.id, 1)
+        self.assertEqual(obj.width, 1)
+        self.assertEqual(obj.height, 1)
+        self.assertEqual(obj.x, 0)
+        self.assertEqual(obj.y, 0)
+        obj.update(id=2)
+        self.assertEqual(obj.id, 2)
+        self.assertEqual(obj.width, 1)
+        self.assertEqual(obj.height, 1)
+        self.assertEqual(obj.x, 0)
+        self.assertEqual(obj.y, 0)
+        obj.update(width=2)
+        self.assertEqual(obj.id, 2)
+        self.assertEqual(obj.width, 2)
+        self.assertEqual(obj.height, 1)
+        self.assertEqual(obj.x, 0)
+        self.assertEqual(obj.y, 0)
+        obj.update(height=2)
+        self.assertEqual(obj.id, 2)
+        self.assertEqual(obj.width, 2)
+        self.assertEqual(obj.height, 2)
+        self.assertEqual(obj.x, 0)
+        self.assertEqual(obj.y, 0)
+        obj.update(x=2)
+        self.assertEqual(obj.id, 2)
+        self.assertEqual(obj.width, 2)
+        self.assertEqual(obj.height, 2)
+        self.assertEqual(obj.x, 2)
+        self.assertEqual(obj.y, 0)
+        obj.update(y=2)
+        self.assertEqual(obj.id, 2)
+        self.assertEqual(obj.width, 2)
+        self.assertEqual(obj.height, 2)
+        self.assertEqual(obj.x, 2)
+        self.assertEqual(obj.y, 2)
+        obj.update(id=1, width=1, height=1, x=1, y=1)
+        self.assertEqual(obj.id, 1)
+        self.assertEqual(obj.width, 1)
+        self.assertEqual(obj.height, 1)
+        self.assertEqual(obj.x, 1)
+        self.assertEqual(obj.y, 1)
+        obj.update(y=98, x=98, height=98, width=98, id=98)
+        self.assertEqual(obj.id, 98)
+        self.assertEqual(obj.width, 98)
+        self.assertEqual(obj.height, 98)
+        self.assertEqual(obj.x, 98)
+        self.assertEqual(obj.y, 98)
+        obj.update(y=99, x=99, width=99, id=99)
+        self.assertEqual(obj.id, 99)
+        self.assertEqual(obj.width, 99)
+        self.assertEqual(obj.height, 98)
+        self.assertEqual(obj.x, 99)
+        self.assertEqual(obj.y, 99)
+        obj.update(x=100, width=100, id=100)
+        self.assertEqual(obj.id, 100)
+        self.assertEqual(obj.width, 100)
+        self.assertEqual(obj.height, 98)
+        self.assertEqual(obj.x, 100)
+        self.assertEqual(obj.y, 99)
+        obj.update(x=101, width=101)
+        self.assertEqual(obj.id, 100)
+        self.assertEqual(obj.width, 101)
+        self.assertEqual(obj.height, 98)
+        self.assertEqual(obj.x, 101)
+        self.assertEqual(obj.y, 99)
