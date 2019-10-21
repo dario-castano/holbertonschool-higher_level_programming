@@ -427,3 +427,11 @@ class TestRectangle(unittest.TestCase):
         with self.assertRaises(ValueError) as context:
             obj.update(y=-80)
         self.assertIn('y must be >= 0', str(context.exception))
+
+    def test_rectangle_to_dictionary(self):
+        obj = Rectangle(1, 1)
+        target = {'id': 1, 'width': 1, 'height': 1, 'x': 0, 'y': 0}
+        self.assertDictEqual(obj.to_dictionary(), target)
+        obj.update(3, 4, 5, 6, 7)
+        target = {'id': 3, 'width': 4, 'height': 5, 'x': 6, 'y': 7}
+        self.assertDictEqual(obj.to_dictionary(), target)

@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-from .rectangle import Rectangle
+from models.rectangle import Rectangle
 
 
 class Square(Rectangle):
@@ -32,3 +32,9 @@ class Square(Rectangle):
             args_list = ['id', 'size', 'x', 'y']
             for index in range(len(valid_args)):
                 setattr(self, args_list[index], valid_args[index])
+
+    def to_dictionary(self):
+        return {'id': self.id,
+                'size': self.size,
+                'x': self.x,
+                'y': self.y}

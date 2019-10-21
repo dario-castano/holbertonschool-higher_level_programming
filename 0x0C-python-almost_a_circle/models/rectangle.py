@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-from .base import Base
+from models.base import Base
 
 
 class Rectangle(Base):
@@ -91,3 +91,10 @@ class Rectangle(Base):
             args_list = ['id', 'width', 'height', 'x', 'y']
             for index in range(len(valid_args)):
                 setattr(self, args_list[index], valid_args[index])
+
+    def to_dictionary(self):
+        return {'id': self.id,
+                'width': self.width,
+                'height': self.height,
+                'x': self.x,
+                'y': self.y}
