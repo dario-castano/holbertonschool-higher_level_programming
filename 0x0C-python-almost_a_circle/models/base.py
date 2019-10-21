@@ -1,7 +1,5 @@
 #!/usr/bin/python3
 import json
-from models.rectangle import Rectangle
-from models.square import Square
 
 
 class Base:
@@ -33,11 +31,11 @@ class Base:
     @classmethod
     def create(cls, **dictionary):
         if cls.__name__ == "Rectangle":
-            dummy = Rectangle(1, 1)
+            dummy = cls(1, 1)
             dummy.update(**dictionary)
             return dummy
         elif cls.__name__ == "Square":
-            dummy = Square(1)
+            dummy = cls(1)
             dummy.update(**dictionary)
             return dummy
         elif cls.__name__ == "Base":
