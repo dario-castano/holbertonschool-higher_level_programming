@@ -2,13 +2,26 @@
 import unittest
 import contextlib
 import io
+import os
+import pep8
 from models.rectangle import Rectangle
 from models.base import Base
 
 
 class TestRectangle(unittest.TestCase):
+    def setUp(self):
+        if os.path.isfile('Rectangle.json'):
+            os.remove('Rectangle.json')
+        if os.path.isfile('Rectangle.csv'):
+            os.remove('Rectangle.csv')
+
     def tearDown(self):
         Base._Base__nb_objects = 0
+
+    def test_rectangle_pep8_conformance(self):
+        pep8style = pep8.StyleGuide(quiet=True)
+        result = pep8style.check_files(['./models/rectangle.py'])
+        self.assertEqual(result.total_errors, 0)
 
     def test_rectangle_noargs(self):
         self.assertRaises(TypeError, Rectangle)
@@ -435,3 +448,38 @@ class TestRectangle(unittest.TestCase):
         obj.update(3, 4, 5, 6, 7)
         target = {'id': 3, 'width': 4, 'height': 5, 'x': 6, 'y': 7}
         self.assertDictEqual(obj.to_dictionary(), target)
+
+    def test_load_from_file_rectangle(self):
+        r1 = Rectangle(10, 7, 2, 8)
+        r2 = Rectangle(2, 4)
+        list_rectangles_input = [r1, r2]
+        Rectangle.save_to_file(list_rectangles_input)
+        list_rectangles_output = Rectangle.load_from_file()
+        self.assertNotEqual(list_rectangles_input, list_rectangles_output)
+
+    def test_rectangle_save_csv(self):
+        file_exists = False
+        r1 = Rectangle(2, 3, 4, 5, 6)
+        r2 = Rectangle(3, 3, 3, 3, 3)
+        r3 = Rectangle(9, 8, 7, 6, 5)
+        rect_lst = [r1, r2, r3]
+        Rectangle.save_to_file_csv(rect_lst)
+        if os.path.isfile('Rectangle.csv'):
+            file_exists = True
+        self.assertTrue(file_exists)
+        out = Rectangle.load_from_file_csv()
+        for i in range(len(out)):
+            self.assertEqual(rect_lst[i].id, out[i].id)
+            self.assertEqual(rect_lst[i].width, out[i].width)
+            self.assertEqual(rect_lst[i].height, out[i].height)
+            self.assertEqual(rect_lst[i].x, out[i].x)
+            self.assertEqual(rect_lst[i].y, out[i].y)
+
+    def test_rectangle_save_empty_csv_file(self):
+        Rectangle.save_to_file_csv([])
+        out = Rectangle.load_from_file_csv()
+        self.assertEqual(out, [])
+
+    def test_rectangle_load_empty_csv_file(self):
+        out = Rectangle.load_from_file_csv()
+        self.assertListEqual(out, [])

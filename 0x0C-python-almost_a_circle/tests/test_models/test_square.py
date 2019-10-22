@@ -2,14 +2,27 @@
 import unittest
 import contextlib
 import io
+import os
+import pep8
 from models.rectangle import Rectangle
 from models.base import Base
 from models.square import Square
 
 
 class TestSquare(unittest.TestCase):
+    def setUp(self):
+        if os.path.isfile('Square.json'):
+            os.remove('Square.json')
+        if os.path.isfile('Square.csv'):
+            os.remove('Square.csv')
+
     def tearDown(self):
         Base._Base__nb_objects = 0
+
+    def test_rectangle_pep8_conformance(self):
+        pep8style = pep8.StyleGuide(quiet=True)
+        result = pep8style.check_files(['./models/square.py'])
+        self.assertEqual(result.total_errors, 0)
 
     def test_square_instance(self):
         obj = Square(1)
@@ -281,3 +294,37 @@ class TestSquare(unittest.TestCase):
         obj.update(3, 4, 5, 6)
         target = {'id': 3, 'size': 4, 'x': 5, 'y': 6}
         self.assertDictEqual(obj.to_dictionary(), target)
+
+    def test_square_load_from_file(self):
+        s1 = Square(6)
+        s2 = Square(7, 9, 1)
+        list_squares_input = [s1, s2]
+        Square.save_to_file(list_squares_input)
+        list_squares_output = Square.load_from_file()
+        self.assertNotEqual(list_squares_input, list_squares_output)
+
+    def test_square_save_csv(self):
+        file_exists = False
+        s1 = Square(2, 3, 4, 5)
+        s2 = Square(3, 3, 3, 3)
+        s3 = Square(9, 8, 7, 6)
+        sq_lst = [s1, s2, s3]
+        Square.save_to_file_csv(sq_lst)
+        if os.path.isfile('Square.csv'):
+            file_exists = True
+        self.assertTrue(file_exists)
+        out = Square.load_from_file_csv()
+        for i in range(len(out)):
+            self.assertEqual(sq_lst[i].id, out[i].id)
+            self.assertEqual(sq_lst[i].size, out[i].size)
+            self.assertEqual(sq_lst[i].x, out[i].x)
+            self.assertEqual(sq_lst[i].y, out[i].y)
+
+    def test_square_save_empty_csv_file(self):
+        Square.save_to_file_csv([])
+        out = Square.load_from_file_csv()
+        self.assertEqual(out, [])
+
+    def test_square_load_empty_csv_file(self):
+        out = Square.load_from_file_csv()
+        self.assertListEqual(out, [])
