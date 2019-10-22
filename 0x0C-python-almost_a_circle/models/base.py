@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"""Module contains Base class"""
 import json
 import csv
 import turtle

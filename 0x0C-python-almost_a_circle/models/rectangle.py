@@ -1,9 +1,12 @@
 #!/usr/bin/python3
+"""Module Rectangle"""
 from models.base import Base
 
 
 class Rectangle(Base):
+    """Class Rectangle"""
     def __init__(self, width, height, x=0, y=0, id=None):
+        """Constructor"""
         super().__init__(id)
         self.width = width
         self.height = height
@@ -11,6 +14,7 @@ class Rectangle(Base):
         self.y = y
 
     def __str__(self):
+        """String representation"""
         return "[Rectangle] ({:d}) {:d}/{:d} - {:d}/{:d}".format(
             self.id,
             self.x,
@@ -21,10 +25,12 @@ class Rectangle(Base):
 
     @property
     def width(self):
+        """Gets the width of the rectangle"""
         return self.__width
 
     @width.setter
     def width(self, value):
+        """Sets the width of the rectangle"""
         if type(value) is not int:
             raise TypeError('width must be an integer')
         elif value <= 0:
@@ -34,10 +40,12 @@ class Rectangle(Base):
 
     @property
     def height(self):
+        """Gets the height of the rectangle"""
         return self.__height
 
     @height.setter
     def height(self, value):
+        """Sets the height of the rectangle"""
         if type(value) is not int:
             raise TypeError('height must be an integer')
         elif value <= 0:
@@ -47,10 +55,12 @@ class Rectangle(Base):
 
     @property
     def x(self):
+        """Gets the x translation of the rectangle"""
         return self.__x
 
     @x.setter
     def x(self, value):
+        """Sets the x translation of the rectangle"""
         if type(value) is not int:
             raise TypeError('x must be an integer')
         elif value < 0:
@@ -60,10 +70,12 @@ class Rectangle(Base):
 
     @property
     def y(self):
+        """Gets the y translation of the rectangle"""
         return self.__y
 
     @y.setter
     def y(self, value):
+        """Sets the x translation of the rectangle"""
         if type(value) is not int:
             raise TypeError('y must be an integer')
         elif value < 0:
@@ -72,9 +84,11 @@ class Rectangle(Base):
             self.__y = value
 
     def area(self):
+        """Returns the area"""
         return self.width * self.height
 
     def display(self):
+        """Displays a ASCII draw made with #"""
         out = []
         for i in range(self.y):
             out.append('\n')
@@ -83,6 +97,7 @@ class Rectangle(Base):
         print(''.join(out), end="")
 
     def update(self, *args, **kwargs):
+        """Update attributes using variadic args"""
         if args is None or not args:
             for key, value in kwargs.items():
                 setattr(self, key, value)
@@ -93,6 +108,7 @@ class Rectangle(Base):
                 setattr(self, args_list[index], valid_args[index])
 
     def to_dictionary(self):
+        """Returns a dictionary representation"""
         return {'id': self.id,
                 'width': self.width,
                 'height': self.height,
