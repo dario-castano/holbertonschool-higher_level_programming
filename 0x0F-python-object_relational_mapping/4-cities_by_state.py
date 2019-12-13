@@ -14,7 +14,6 @@ def print_cursor(result):
 
 
 if __name__ == '__main__':
-    state = sys.argv[4]
     db_conf = {
         'host': 'localhost',
         'port': 3306,
@@ -25,6 +24,10 @@ if __name__ == '__main__':
 
     db = MySQLdb.connect(**db_conf)
     cursor = db.cursor()
-    cursor.execute("""SELECT * FROM states WHERE name=%s ORDER BY states.id ASC""", (state,))
+    statement = "SELECT cities.id, cities.name, states.name \
+                FROM cities INNER JOIN states \
+                ON (states.id=cities.state_id) \
+                ORDER BY cities.id ASC"
+    cursor.execute(statement)
     out = cursor.fetchall()
     print_cursor(out)
