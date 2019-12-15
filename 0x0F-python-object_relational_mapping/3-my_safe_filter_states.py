@@ -1,16 +1,11 @@
 #!/usr/bin/python3
+"""
+ takes in arguments and displays all values
+ in the states table of hbtn_0e_0_usa where
+ name matches the argument
+"""
 import sys
 import MySQLdb
-
-
-def print_cursor(result):
-    """Prints a cursor recursively
-    """
-    if not result:
-        return
-    else:
-        print(result[0])
-        print_cursor(result[1:])
 
 
 if __name__ == '__main__':
@@ -25,6 +20,12 @@ if __name__ == '__main__':
 
     db = MySQLdb.connect(**db_conf)
     cursor = db.cursor()
-    cursor.execute("""SELECT * FROM states WHERE name=%s ORDER BY states.id ASC""", (state,))
+    cursor.execute("""\
+                    SELECT * FROM states \
+                    WHERE name=%s \
+                    ORDER BY states.id ASC""", (state,))
     out = cursor.fetchall()
-    print_cursor(out)
+    for row in out:
+        print(row)
+    cursor.close()
+    db.close()
