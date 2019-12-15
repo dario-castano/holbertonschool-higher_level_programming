@@ -3,16 +3,6 @@ import sys
 import MySQLdb
 
 
-def print_cursor(result):
-    """Prints a cursor recursively
-    """
-    if not result:
-        return
-    else:
-        print(result[0])
-        print_cursor(result[1:])
-
-
 if __name__ == '__main__':
     state = sys.argv[4].translate({39: None})
     db_conf = {
@@ -28,4 +18,7 @@ if __name__ == '__main__':
     statement = "SELECT * FROM states WHERE name=\'{:s}\' ORDER BY states.id ASC".format(state)
     cursor.execute(statement)
     out = cursor.fetchall()
-    print_cursor(out)
+    for row in out:
+        print(row)
+    cursor.close()
+    db.close()
