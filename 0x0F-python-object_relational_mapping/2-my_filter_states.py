@@ -22,7 +22,7 @@ if __name__ == '__main__':
     cursor = db.cursor()
     statement = "SELECT * FROM states \
                  WHERE states.name='{}' \
-                 ORDER BY states.id ASC".format(state)
+                 ORDER BY states.id".format(state)
     cursor.execute(statement)
     out = cursor.fetchall()
     for row in out:
