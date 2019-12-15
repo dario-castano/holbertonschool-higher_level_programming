@@ -28,3 +28,5 @@ if __name__ == '__main__':
     cursor.execute(statement)
     out = cursor.fetchall()
     print_cursor(out)
+    cursor.close()
+    db.close()
