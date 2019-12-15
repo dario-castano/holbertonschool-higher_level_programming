@@ -11,7 +11,7 @@ Base = declarative_base()
 
 
 class State(Base):
-    """
+    """Maps state table on the DB
     """
     __tablename__ = 'states'
     id = Column(Integer,
