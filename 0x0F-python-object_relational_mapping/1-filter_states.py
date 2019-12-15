@@ -6,16 +6,6 @@ import sys
 import MySQLdb
 
 
-def print_cursor(result):
-    """Prints a cursor recursively
-    """
-    if not result:
-        return
-    else:
-        print(result[0])
-        print_cursor(result[1:])
-
-
 if __name__ == '__main__':
     db_conf = {
         'host': 'localhost',
@@ -33,6 +23,7 @@ if __name__ == '__main__':
                 ORDER BY states.id ASC"
     cursor.execute(statement)
     out = cursor.fetchall()
-    print_cursor(out)
+    for row in out:
+        print(row)
     cursor.close()
     db.close()
