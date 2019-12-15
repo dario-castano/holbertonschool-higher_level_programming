@@ -1,4 +1,9 @@
 #!/usr/bin/python3
+"""
+takes in an argument and displays all values
+in the states table of hbtn_0e_0_usa where
+name matches the argument
+"""
 import sys
 import MySQLdb
 
@@ -15,7 +20,9 @@ if __name__ == '__main__':
 
     db = MySQLdb.connect(**db_conf)
     cursor = db.cursor()
-    statement = "SELECT * FROM states WHERE name=\'{:s}\' ORDER BY states.id ASC".format(state)
+    statement = "SELECT * FROM states \
+                 WHERE name=\'{:s}\' \
+                 ORDER BY states.id ASC".format(state)
     cursor.execute(statement)
     out = cursor.fetchall()
     for row in out:
