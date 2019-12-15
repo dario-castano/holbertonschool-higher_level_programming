@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+"""lists all states with a name starting with N
+(upper N) from the database hbtn_0e_0_usa
+"""
 import sys
 import MySQLdb
 
@@ -24,7 +27,12 @@ if __name__ == '__main__':
 
     db = MySQLdb.connect(**db_conf)
     cursor = db.cursor()
-    statement = "SELECT * FROM states WHERE name LIKE 'n%' ORDER BY states.id ASC"
+    statement = "SELECT * \
+                FROM states \
+                WHERE name LIKE BINARY 'N%' \
+                ORDER BY states.id ASC"
     cursor.execute(statement)
     out = cursor.fetchall()
     print_cursor(out)
+    cursor.close()
+    db.close()
