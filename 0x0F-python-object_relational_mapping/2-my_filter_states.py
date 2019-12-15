@@ -9,7 +9,7 @@ import MySQLdb
 
 
 if __name__ == '__main__':
-    state = sys.argv[4].translate({39: None})
+    state = sys.argv[4]
     db_conf = {
         'host': 'localhost',
         'port': 3306,
