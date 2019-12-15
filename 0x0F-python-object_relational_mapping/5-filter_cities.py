@@ -1,16 +1,11 @@
 #!/usr/bin/python3
+"""
+takes in the name of a state as an argument
+and lists all cities of that state, using
+the database hbtn_0e_4_usa
+"""
 import sys
 import MySQLdb
-
-
-def print_cursor(result):
-    """Prints a cursor recursively
-    """
-    if not result:
-        return
-    else:
-        print(result[0])
-        print_cursor(result[1:])
 
 
 if __name__ == '__main__':
@@ -25,10 +20,14 @@ if __name__ == '__main__':
 
     db = MySQLdb.connect(**db_conf)
     cursor = db.cursor()
-    statement = "SELECT cities.id, cities.name, states.name \
+    statement = "SELECT cities.name \
                 FROM cities INNER JOIN states \
-                ON (states.id=cities.state_id) \
+                ON cities.state_id=states.id \
+                WHERE states.name=%s \
                 ORDER BY cities.id ASC"
-    cursor.execute(statement)
+    cursor.execute(statement, (state,))
     out = cursor.fetchall()
-    print_cursor(out)
+    cities = ", ".join([x[0] for x in out])
+    print(cities)
+    cursor.close()
+    db.close()
