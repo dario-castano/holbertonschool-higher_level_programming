@@ -1,16 +1,9 @@
 #!/usr/bin/python3
+"""
+lists all cities from the database hbtn_0e_4_usa
+"""
 import sys
 import MySQLdb
-
-
-def print_cursor(result):
-    """Prints a cursor recursively
-    """
-    if not result:
-        return
-    else:
-        print(result[0])
-        print_cursor(result[1:])
 
 
 if __name__ == '__main__':
@@ -30,4 +23,7 @@ if __name__ == '__main__':
                 ORDER BY cities.id ASC"
     cursor.execute(statement)
     out = cursor.fetchall()
-    print_cursor(out)
+    for row in out:
+        print(row)
+    cursor.close()
+    db.close()
