@@ -23,7 +23,7 @@ if __name__ == '__main__':
     statement = "SELECT cities.name \
                 FROM cities INNER JOIN states \
                 ON cities.state_id=states.id \
-                WHERE states.name=%s \
+                WHERE states.name LIKE BINARY %s \
                 ORDER BY cities.id ASC"
     cursor.execute(statement, (state,))
     out = cursor.fetchall()
