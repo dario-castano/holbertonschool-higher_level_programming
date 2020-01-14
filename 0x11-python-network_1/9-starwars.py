@@ -7,9 +7,9 @@ import sys
 import requests
 
 if __name__ == "__main__":
-    data = {'search': sys.argv[1] if sys.argv.__len__() > 1 else None}
+    data = {'search': sys.argv[1] if sys.argv.__len__() > 1 else ""}
     url = 'https://swapi.co/api/people/'
-    response = requests.get(url, data).json()
+    response = requests.get(url, params=data).json()
     print('Number of results: {}'.format(response.get('count')))
     if response.get('count') > 0:
         resultset = response.get('results')
