@@ -14,3 +14,5 @@ if __name__ == "__main__":
     response = requests.get(url, auth=auth).json()
     if 'id' in response:
         print(response.get('id'))
+    else:
+        print('None')
