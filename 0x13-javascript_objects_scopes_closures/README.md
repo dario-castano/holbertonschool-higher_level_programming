@@ -1,0 +1,2 @@
+# 0x13-javascript_objects_scopes_closures
+This is the 0x13-javascript_objects_scopes_closures repo for Holberton School
