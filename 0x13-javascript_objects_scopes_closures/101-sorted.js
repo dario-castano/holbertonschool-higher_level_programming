@@ -1,17 +1,17 @@
 #!/usr/bin/node
 
-dict = require('./101-data').dict;
-const freqs = [... new Set(Object.values(dict).sort())];
-let out = {};
+const dict = require('./101-data').dict;
+const freqs = [...new Set(Object.values(dict).sort())];
+const out = {};
 
-for (f of freqs) {
-  out[f] = Array();
+for (const f of freqs) {
+  out[f] = [];
 }
 
-for (key of Object.keys(dict)) {
-  for (freq of freqs) {
+for (const key of Object.keys(dict)) {
+  for (const freq of freqs) {
     if (dict[key] === freq) {
-      arr = out[freq];
+      const arr = out[freq];
       arr.push(key);
       out[freq] = arr;
     }
