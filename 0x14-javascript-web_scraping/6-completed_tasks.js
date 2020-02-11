@@ -1,6 +1,7 @@
 #!/usr/bin/node
 
-const uri = 'https://jsonplaceholder.typicode.com/todos?completed=true';
+const url = process.argv[2];
+const uri = `${url}?completed=true`;
 const request = require('request');
 
 request(uri, (error, _, body) => {
