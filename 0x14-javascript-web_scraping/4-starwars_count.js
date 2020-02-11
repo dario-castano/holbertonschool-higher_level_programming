@@ -2,7 +2,7 @@
 
 const uri = process.argv[2];
 const id = 18;
-const term = `https:${uri.slice(5, 20)}people/${id}/`
+const term = `https:${uri.slice(5, 20)}people/${id}/`;
 const request = require('request');
 
 request(uri, (error, _, body) => {
